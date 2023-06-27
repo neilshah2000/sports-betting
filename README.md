@@ -2,6 +2,7 @@
 - Both front end and back end project are in the same repo.
 - Typescript and Express on the back end, Typescript, React and MaterialUI on the front end.
 - ```npm install``` in both for dependencies. ```npm run server``` on the back end and ```npm run start``` on the front end to run. Both running in dev mode, no prod build.
+- Api running on localhost:4000. Api calls proxied through react dev server so no CORS headers.
 
 ## Credentials
 - server uses .env file in the project root for credentials. Mine looks like   
