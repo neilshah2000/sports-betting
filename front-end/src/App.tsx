@@ -1,9 +1,8 @@
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import OddsPage from "./OddsPage";
-import LoginPage from "./LoginPage";
-import FixturesPage from "./FixturesPage";
-import Layout from "./Layout";
+import OddsPage from "./pages/OddsPage";
+import LoginPage from "./pages/LoginPage";
+import FixturesPage from "./pages/FixturesPage";
+import Layout from "./layout/Layout";
 
 const router = createBrowserRouter([
   {

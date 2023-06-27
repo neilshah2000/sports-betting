@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { getFixtures, login } from "./api";
+import { getFixtures, login } from "../api/api";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import FixtureCard from "./FixtureCard";
+import FixtureCard from "../components/FixtureCard";
 import { useNavigate } from "react-router-dom";
 // import useScrollPosition from "./useScrollPosition";
 // import useScrollEnd from "./useScrollEnd";

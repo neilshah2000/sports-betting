@@ -1,6 +1,6 @@
 import { Alert, Box, Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { login } from "./api";
+import { login } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {

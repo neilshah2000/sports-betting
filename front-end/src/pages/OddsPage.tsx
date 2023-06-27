@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getOdds, getFixtureById } from "./api";
-import Bookmaker from "./Bookmaker";
-import FixtureCard from "./FixtureCard";
+import { getOdds, getFixtureById } from "../api/api";
+import Bookmaker from "../components/Bookmaker";
+import FixtureCard from "../components/FixtureCard";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
