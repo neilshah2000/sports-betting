@@ -17,6 +17,7 @@ JWTSECRET="myJwtSecret123ABC"
 - Uses JWT for authentication.
 - Single user with credentials stored in .env file.
 - User can access all pages and endpoints once they are logged in.
+- Unauthorized access redirects back to login screen.
 
 ![Login](login.png)
 
