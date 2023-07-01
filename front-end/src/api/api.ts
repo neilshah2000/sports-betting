@@ -11,7 +11,7 @@ export function setCookie(cname: string, cvalue: string, exdays: number) {
 }
 
 async function login(username: string, password: string) {
-  const response = await fetch("/login", {
+  const response = await fetch("/api/login", {
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({ username, password }),
@@ -29,7 +29,7 @@ export function logout() {
 }
 
 async function getFixtures() {
-  const response = await fetch("/fixtures", {
+  const response = await fetch("/api/fixtures", {
     method: "GET",
     headers: myHeaders,
   });
@@ -39,7 +39,7 @@ async function getFixtures() {
 }
 
 async function getFixtureById(fixtureId: number) {
-  const response = await fetch(`/fixture?fixtureId=${fixtureId}`, {
+  const response = await fetch(`/api/fixture?fixtureId=${fixtureId}`, {
     method: "GET",
     headers: myHeaders,
   });
@@ -49,7 +49,7 @@ async function getFixtureById(fixtureId: number) {
 }
 
 async function getOdds(fixtureId: number) {
-  const response = await fetch(`/odds?fixtureId=${fixtureId}`, {
+  const response = await fetch(`/api/odds?fixtureId=${fixtureId}`, {
     method: "GET",
     headers: myHeaders,
   });
