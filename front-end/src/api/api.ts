@@ -1,35 +1,48 @@
+///////////////// static headers stuff ///////////
+
 const myHeaders = new Headers();
+setHeaders();
 
-myHeaders.append("Content-Type", "application/json");
-// myHeaders.append("Authorization", retrieveToken());
-
-export function setCookie(cname: string, cvalue: string, exdays: number) {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+function setHeaders() {
+  myHeaders.delete("Content-Type");
+  myHeaders.delete("Authorization");
+  myHeaders.append("Content-Type", "application/json");
+  const token = retrieveToken();
+  if (token !== null) {
+    myHeaders.append("Authorization", token);
+  }
 }
 
+function storeToken(token: string) {
+  localStorage.setItem("token", `Bearer ${token}`);
+  setHeaders();
+}
+
+function retrieveToken() {
+  const token = localStorage.getItem("token");
+  return token;
+}
+
+///////////////// api calls //////////////////
+
 async function login(username: string, password: string) {
-  const response = await fetch("/api/login", {
+  const response = await fetch("http://localhost:4000/api/login", {
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({ username, password }),
   });
   const jsonData = await response.json();
-  //   console.log("jsondata", jsonData);
-  setCookie("token", jsonData.token, 1);
+  storeToken(jsonData.token);
   return response.ok ? jsonData : Promise.reject(jsonData);
 }
 
-export function logout() {
-  console.log(document.cookie);
-  setCookie("token", "", -1);
-  console.log(document.cookie);
+function logout() {
+  localStorage.removeItem("token");
+  setHeaders();
 }
 
 async function getFixtures() {
-  const response = await fetch("/api/fixtures", {
+  const response = await fetch("http://localhost:4000/api/fixtures", {
     method: "GET",
     headers: myHeaders,
   });
@@ -39,7 +52,7 @@ async function getFixtures() {
 }
 
 async function getFixtureById(fixtureId: number) {
-  const response = await fetch(`/api/fixture?fixtureId=${fixtureId}`, {
+  const response = await fetch(`http://localhost:4000/api/fixture?fixtureId=${fixtureId}`, {
     method: "GET",
     headers: myHeaders,
   });
@@ -49,7 +62,7 @@ async function getFixtureById(fixtureId: number) {
 }
 
 async function getOdds(fixtureId: number) {
-  const response = await fetch(`/api/odds?fixtureId=${fixtureId}`, {
+  const response = await fetch(`http://localhost:4000/api/odds?fixtureId=${fixtureId}`, {
     method: "GET",
     headers: myHeaders,
   });
@@ -58,4 +71,4 @@ async function getOdds(fixtureId: number) {
   return response.ok ? jsonData.response : Promise.reject(jsonData);
 }
 
-export { getFixtures, getFixtureById, getOdds, login };
+export { getFixtures, getFixtureById, getOdds, login, logout };

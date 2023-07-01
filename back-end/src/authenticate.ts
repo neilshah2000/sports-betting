@@ -6,10 +6,13 @@ import { Express, Request, Response, NextFunction } from "express";
 const mySecret = process.env.JWTSECRET || "some-secret";
 
 export function authenticateToken(req: any, res: Response, next: NextFunction) {
-  const token = req.cookies.token;
-  //   console.log("token", token);
+  const authHeader = req.header("authorization");
+  console.log("authHeader", authHeader);
 
-  if (token == null) return res.status(401).send({ error: "unauthorized" });
+  if (!authHeader) return res.status(401).send({ error: "unauthorized" });
+
+  const token = authHeader.split(" ")[1];
+  console.log("token", token);
 
   try {
     jwt.verify(token, mySecret as string, (err: any, user: any) => {
